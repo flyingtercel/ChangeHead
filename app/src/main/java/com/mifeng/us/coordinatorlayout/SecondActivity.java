@@ -72,7 +72,6 @@ public class SecondActivity extends BaseActivity {
         }
         mCumanager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL,false);
         mRecyclerView.setLayoutManager(mCumanager);
-
         SecondAdapter mAdapter = new SecondAdapter(mDatas,this);
         mRecyclerView.setAdapter(mAdapter);
 
@@ -93,7 +92,7 @@ public class SecondActivity extends BaseActivity {
         mRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             private int roateDx = 0; //滑动宽度
             private int allWidth = 0; //总宽度
-            private int mRecyWidth = 0;
+            private int mRecyWidth = 0;//RecyclerView的屏幕宽度
             @Override
             public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
                 super.onScrollStateChanged(recyclerView, newState);
@@ -122,15 +121,16 @@ public class SecondActivity extends BaseActivity {
     }
 
     private void changeColor() {
+        //获取滑动布局头部到顶部的距离
         int[] location = new int[2];
         mHeadIcon.getLocationInWindow(location);
         int currentY = location[1];
-        Log.i("TAG", "==============" + currentY);
+        //如果滑动距离到顶部的距离为0则设置控件可见或者改变背景颜色
         if (currentY >= 0) {
-            mLayout01.setVisibility(View.VISIBLE);
+            mLayout01.setBackgroundColor(Color.parseColor("#aa834a"));
             setTranslucentStatus(false);
         } else {
-            mLayout01.setVisibility(View.INVISIBLE);
+            mLayout01.setBackgroundColor(Color.parseColor("#FFFFFF"));
             setTranslucentStatus(true);
         }
     }
@@ -157,7 +157,7 @@ public class SecondActivity extends BaseActivity {
     }
 
     public void setTranslucentStatus(boolean isBack) {
-
+        //只有安卓6.0之上才可以做状态栏字体颜色修改
         if (isBack) {
             getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
         } else {

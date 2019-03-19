@@ -32,13 +32,13 @@ public class DesignScrollView extends ScrollView{
     }
 
     public interface OnScrollistener {
-
         void onScroll(int startY, int endY);
     }
-
     @Override
     protected void onScrollChanged(int l, int t, int oldl, int oldt) {
-        onScrollistener.onScroll(oldt, t);
+        if (onScrollistener != null){
+            onScrollistener.onScroll(oldt, t);
+        }
         super.onScrollChanged(l, t, oldl, oldt);
     }
 }
