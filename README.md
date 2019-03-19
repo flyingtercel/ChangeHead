@@ -1,5 +1,8 @@
 # ChangeHead
 滑动改变状态栏布局颜色及状态栏字体颜色
+
+### 效果展示
+![image](https://github.com/flyingtercel/ChangeHead/blob/master/img/slc.gif)
 ### 设置状态栏为透明的
 ```
 protected void setStatusBar() {
